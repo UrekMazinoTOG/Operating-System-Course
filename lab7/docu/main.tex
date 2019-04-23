@@ -1,0 +1,288 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{vietnam}
+\usepackage[margin=2cm]{geometry}
+\usepackage[unicode]{hyperref}
+\usepackage{color}
+\usepackage{array}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Operating Systems Course}
+\lhead{Lab 7}
+\rfoot{Page \thepage}
+\lfoot{\leftmark}
+
+\begin{document}
+
+\begin{flushleft}
+    \begin{tabular}{c}
+        \\ \\ \hline \\
+        \multicolumn{1}{l}{\textbf{{\Huge Lab 7 Scheduling}}}		
+        \\ \\
+        \textbf{{\Huge Course: Operating Systems}}		            
+        \\ \\ \hline \\
+    \end{tabular}
+\end{flushleft}
+
+\selectlanguage{english}
+
+\vspace{1cm}
+
+\subsection*{Exercise 1 : Suppose that the following 
+processes arrive for execution at the times indicated. 
+Each process will run for the amount of time listed. In 
+answering the questions, use non-preemptive scheduling, 
+and base all decisions on the information you have at 
+the time the decision must be made.}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|c||c|c|}
+    \hline
+    Process & Arrival time & Burst time \\ \hline
+    P1      & 0.0          & 8          \\ \hline
+    P2      & 0.4          & 4          \\ \hline
+    P3      & 1.0          & 1          \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{a) What is the average turnaround time for these 
+processes with the FCFS scheduling algorithm?}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{8cm}|m{4cm}|m{1cm}|}
+        \hline
+        P1 & P2 & P3 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{8cm} m{4cm} m{1cm} l }
+        0 & 8 & 12 & 13 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - FCFS}
+\end{table}
+
+\begin{itemize}
+    \item Turnaround time of process one is $T_{TT1} = 8 - 0 = 8$
+    \item Turnaround time of process two is $T_{TT2} = 12 - 0.4 = 11.6$
+    \item Turnaround time of process three is $T_{TT3} = 13 - 1 = 12$
+\end{itemize}
+
+The average turnaround time is $\overline T = (8 + 11.6 + 12) \div 3 $
+
+\newpage
+\subsubsection*{b) What is the average turnaround time 
+for these processes with the SJF scheduling algorithm?} 
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{8cm}|m{1cm}|m{4cm}|}
+        \hline
+        P1 & P3 & P2 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{8cm} m{1cm} m{4cm} l }
+        0 & 8 & 9 & 13 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - SJF - V1}
+\end{table}
+
+\begin{itemize}
+    \item Turnaround time of process one is $T_{TT1} = 8 - 0 = 8$
+    \item Turnaround time of process three is $T_{TT3} = 9 - 1 = 8$
+    \item Turnaround time of process two is $T_{TT2} = 13 - 0.4 = 12.6$
+\end{itemize}
+
+The average turnaround time is $\overline T = (8 + 8 + 12.6) \div 3 $
+
+\subsubsection*{c) The SJF algorithm is supposed to 
+improve performance, but notice that we chose to run process P1 
+at time 0 because we did not know that two shorter processes 
+would arrive soon. Compute what the average turnaround time will 
+be if the CPU is left idle for the first 1 unit and then SJF 
+scheduling is used. Remember that processes P1 and P2 are 
+waiting during this idle time, so their waiting time may 
+increase. This algorithm could be called future-knowledge 
+scheduling.} 
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{1cm}|m{1cm}|m{4cm}|m{8cm}|}
+        \hline
+        \O & P3 & P2 & P1 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{1cm} m{1cm} m{4cm} m{8cm} l }
+        0 & 1 & 2 & 6 & 14 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - SJF - V2}
+\end{table}
+
+\begin{itemize}
+    \item Turnaround time of process three is $T_{TT3} = 2 - 1 = 1$
+    \item Turnaround time of process two is $T_{TT2} = 6 - 0.4 = 5.6$
+    \item Turnaround time of process one is $T_{TT1} = 14 - 0 = 14$
+\end{itemize}
+
+The average turnaround time is $\overline T = (1 + 5.6 + 14) \div 3 $
+
+\newpage
+
+\subsection*{Exercise 2 : The processes are assumed to have 
+arrived in the order P1, P2, P3, P4, P5, all at time 0. Draw 
+four Gantt charts that illustrate the execution of these 
+processes using the following scheduling algorithms: FCFS, SJF, 
+non-preemptive priority (a larger priority number implies a 
+higher priority), and RR (quantum = 1). Calculate the average 
+waiting time and turnaround time of each scheduling algorithm.}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+
+    \begin{tabular}{|c||c|c|}
+    \hline
+    Process & Burst time & Priority \\ \hline
+    P1      & 8          & 4        \\ \hline
+    P2      & 6          & 1        \\ \hline
+    P3      & 1          & 2        \\ \hline
+    P4      & 9          & 2        \\ \hline
+    P5      & 3          & 3        \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection*{a) The First-Come, First-Served Scheduling (FCFS)}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{4cm}|m{3cm}|m{0.5cm}|m{4.5cm}|m{1.5cm}|}
+        \hline
+        P1 & P2 & P3 & P4 & P5 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{4cm} m{3cm} m{0.5cm} m{4.5cm} m{1.5cm} l}
+        0 & 8 & 14 & 15 & 24 & 27 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - FCFS}
+\end{table}
+
+\begin{itemize}
+    \item The average turnaround time is $\overline T = (8 + 14 + 15 + 24 + 27) \div 5 $
+    \item The average waiting time is $\overline T = (0 + 8 + 14 + 15 + 24) \div 5 $
+\end{itemize}
+
+\subsubsection*{b) Shortest Job First Scheduling (SJF)} 
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{0.5cm}|m{1.5cm}|m{3cm}|m{4cm}|m{4.5cm}|}
+        \hline
+        P3 & P5 & P2 & P4 & P1 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{0.5cm} m{1.5cm} m{3cm} m{4cm} m{4.5cm} l}
+        0 & 1 & 4 & 10 & 18 & 27 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - SJF}
+\end{table}
+
+\begin{itemize}
+    \item The average turnaround time is $\overline T = (1 + 4 + 10 + 18 + 27) \div 5 $
+    \item The average waiting time is $\overline T = (0 + 1 + 4 + 10 + 18) \div 5 $
+\end{itemize}
+
+\newpage
+
+\subsubsection*{c) Non-preemptive Priority Scheduling}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|m{4cm}|m{1.5cm}|m{4.5cm}|m{0.5cm}|m{3cm}|}
+        \hline
+        P1 & P5 & P4 & P3 & P2 \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{m{4cm}m{1.5cm}m{4.5cm}m{0.5cm}m{3cm} l}
+        0 & 8 & 11 & 20 & 21 & 27 \\
+    \end{tabular}
+    
+    \caption{Gantt chart - non-preemptive priority}
+\end{table}
+
+\begin{itemize}
+    \item The average turnaround time is $\overline T = (8 + 11 + 20 + 21 + 27) \div 5 $
+    \item The average waiting time is $\overline T = (0 + 8 + 11 + 20 + 21) \div 5 $
+\end{itemize}
+
+\subsubsection*{d) Round Robin (RR)}
+
+\begin{table}[!htp]
+    \centering            %Center Table%
+    \def\arraystretch{2}  %Margin Table%
+    
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+        \hline
+        1&2&\textcolor{red}{3}&4&5&
+        1&2&4&5&
+        1&2&4&\textcolor{red}{5}&
+        1&2&4&
+        1&2&4&
+        1&\textcolor{red}{2}&4&
+        1&4&
+        \textcolor{red}{1}&4&
+        \textcolor{red}{4} \\
+        \hline
+    \end{tabular}
+
+    \caption{Gantt chart - non-preemptive priority}
+\end{table}
+\begin{itemize}
+    \item The average turnaround time is $\overline T = (3 + 13 + 21 + 25 + 27) \div 5 $
+    \item The average waiting time is $\overline T = (17 + 15 + 2 + 18 + 10) \div 5 $
+    \begin{itemize}
+        \item The waiting time of P1 is $\overline T = 0 + 4 + 3 + 3 + 2 + 2 + 2 + 1 = 17$
+        \item The waiting time of P2 is $\overline T = 1 + 4 + 3 + 3 + 2 + 2 = 15$
+        \item The waiting time of P3 is $\overline T = 2$
+        \item The waiting time of P4 is $\overline T = 3 + 3 + 3 + 3 + 2 + 2 + 1 + 1 = 18$
+        \item The waiting time of P5 is $\overline T = 4 + 3 + 3 = 10$
+    \end{itemize}
+\end{itemize}
+
+
+
+\newpage
+
+\begin{thebibliography}{80}
+    \bibitem{http://wikipedia:2019} Wikipedia. http://en.wikipedia.org, last access: 10/04/2019.
+    \bibitem{osc}  Silberschatz, Galvin, and Gagne, Operating System Concepts.
+    \bibitem{mos} Tanenbaum, Modern Operating Systems.
+\end{thebibliography}
+
+\end{document}
