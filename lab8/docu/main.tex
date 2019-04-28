@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{vietnam}
+\usepackage[margin=2cm]{geometry}
+\usepackage[unicode]{hyperref}
+\usepackage{color}
+\usepackage{array}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Operating Systems Course}
+\lhead{Lab 8}
+\rfoot{Page \thepage}
+\lfoot{\leftmark}
+
+\begin{document}
+
+\begin{flushleft}
+    \begin{tabular}{c}
+        \\ \\ \hline \\
+        \multicolumn{1}{l}{\textbf{{\Huge Lab 8 Contiguous Memory Allocation}}}		
+        \\ \\
+        \textbf{{\Huge Course: Operating Systems}}		            
+        \\ \\ \hline \\
+    \end{tabular}
+\end{flushleft}
+
+\selectlanguage{english}
+
+\vspace{0.5cm}
+
+\section*{Exercise 1}
+Given six memory partitions of 300 KB, 600 KB, 350 KB, 200 KB, 750 KB, and 125
+KB (in order), how would the first-fit, best-fit, and worst-fit algorithms place processes
+of size 115 KB, 500 KB, 358 KB, 200 KB, and 375 KB (in order)? Rank the algorithms
+in terms of how efficiently they use memory
+
+\begin{table}[!htp]
+    \centering
+    \def\arraystretch{1.6}
+
+    \begin{tabular}{|l|l|l|}
+        \hline
+        First fit                    & Best fit                     & Worst fit                    \\ \hline
+        115(KB) to 300(KB) partition & 115(KB) to 125(KB) partition & 115(KB) to 750(KB) partition \\ \hline
+        500(KB) to 600(KB) partition & 500(KB) to 600(KB) partition & 500(KB) to 600(KB) partition \\ \hline
+        358(KB) to 750(KB) partition & 358(KB) to 750(KB) partition & 358(KB) must wait            \\ \hline
+        200(KB) to 350(KB) partition & 200(KB) to 200(KB) partition & 200(KB) to 350(KB) partition \\ \hline
+        375(KB) must wait            & 375(KB) must wait            & 375(KB) must wait            \\ \hline
+    \end{tabular}
+\end{table}
+
+\section*{Exercise 2}
+Student write a short report that compares the advantages as well as disadvantages
+of the allocation algorithms, namely First-Fit, Best-Fit, Worst-Fit.
+
+\begin{table}[!htp]
+    \centering
+    \def\arraystretch{1.5}
+
+    \begin{tabular}{|m{2cm}|m{6.5cm}|m{7.5cm}|}
+    \hline
+    Algorithm & Advantage                                                                                                    & Disadvantage                                                                                                                                                  \\ \hline
+    First fit & Fastest algorithm because it searches as little as possible.                                                 & The remaining unused memory areas left after allocation become waste if it is too smaller. Thus request for larger memory requirement cannot be accomplished. \\ \hline
+    Best fit  & Memory utilization is much better than first fit as it searches the smallest free partition first available. & It is slower and may even tend to fill up memory with tiny useless holes.                                                                                     \\ \hline
+    Worst fit & Reduces the rate of production of small gaps.                                                                & If a process requiring larger memory arrives at a later stage then it cannot be accommodated as the largest hole is already split and occupied.               \\ \hline
+    \end{tabular}
+\end{table}
+
+\newpage
+\begin{thebibliography}{80}
+    \bibitem{http://wikipedia:2019} Wikipedia. http://en.wikipedia.org, last access: 15/04/2019.
+    \bibitem{osc}  Silberschatz, Galvin, and Gagne, Operating System Concepts.
+    \bibitem{mos} Tanenbaum, Modern Operating Systems.
+\end{thebibliography}
+
+\end{document}
