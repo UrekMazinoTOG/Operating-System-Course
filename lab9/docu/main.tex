@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{vietnam}
+\usepackage[margin=2cm]{geometry}
+\usepackage[unicode]{hyperref}
+\usepackage{multicol}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Operating Systems Course}
+\lhead{Lab 8}
+\rfoot{Page \thepage}
+\lfoot{\leftmark}
+
+\begin{document}
+
+\begin{flushleft}
+    \begin{tabular}{c}
+        \\ \\ \hline \\
+        \multicolumn{1}{l}{\textbf{{\Huge Lab 9 Paging}}}
+        \\ \\
+        \textbf{{\Huge Course: Operating Systems}}
+        \\ \\ \hline \\
+    \end{tabular}
+\end{flushleft}
+
+\selectlanguage{english}
+
+\vspace{0.5cm}
+
+\section*{Exercise 1}
+Consider the page table shown in Figure 3.1 for a system with 12-bit virtual andphysical addresses and with 256-byte pages. The list of free page frames is D, E, F (that is, D is at the head of the list, E is second, and F is last). Convert the following virtual addresses to their equivalent physical addresses in hexadecimal. All numbers are given in hexadecimal. (A dash for a page frame indicates that the page is not in memory.)
+
+
+\begin{multicols}{3}
+
+
+    \begin{tabular}{|c|c|}
+    \hline
+    Page & Page frame \\ \hline
+    0    & \_         \\ \hline
+    1    & 2          \\ \hline
+    2    & C          \\ \hline
+    3    & A          \\ \hline
+    4    & \_         \\ \hline
+    5    & 4          \\ \hline
+    6    & 3          \\ \hline
+    7    & \_         \\ \hline
+    8    & B          \\ \hline
+    9    & 0          \\ \hline
+    \end{tabular}
+
+    \begin{itemize}
+        \item 9EF-0EF
+        \item 111-211
+        \item 700-D00
+        \item 0FF-EFF
+    \end{itemize}
+
+\end{multicols}
+
+
+\newpage
+\begin{thebibliography}{80}
+    \bibitem{http://wikipedia:2019} Wikipedia. http://en.wikipedia.org, last access: 15/04/2019.
+    \bibitem{osc}  Silberschatz, Galvin, and Gagne, Operating System Concepts.
+    \bibitem{mos} Tanenbaum, Modern Operating Systems.
+\end{thebibliography}
+
+\end{document}
